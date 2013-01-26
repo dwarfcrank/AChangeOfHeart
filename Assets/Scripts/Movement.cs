@@ -6,15 +6,13 @@ public class Movement : MonoBehaviour {
 	int laneNum = 2;
 	float laneLocation;
 	public float playerSpeed = 10.2f;
-	public float multiplier = 1.0f;
 	public float minSpeed = 1.2f;
 	public float maxSpeed = 24.0f;
-	public float bpmDivider = 90.0f;
-	public float multiplierMax = 1.01f;
-	public float multiplierMin = 0.9f;
+	public float maxBPM = 90.0f;
 	public MovingTexture road;
 	public MicrophoneInput input;
 	public bool hitGranny = false;
+
 	
 	// Use this for initialization
 	void Start () 
@@ -56,7 +54,6 @@ public class Movement : MonoBehaviour {
 			laneLocation = -1.45f;
 		}
 		newPosition.y = laneLocation;
-		Debug.Log (playerSpeed);
 		
 		// Changing speed
 		/*if (Input.GetKeyDown(KeyCode.A) && playerSpeed >= minSpeed) 
@@ -68,14 +65,9 @@ public class Movement : MonoBehaviour {
 			playerSpeed += 1.0f;
 		}*/
 		
-		multiplier = (input.average_bpm / bpmDivider);
-		multiplier = Mathf.Min (multiplier, multiplierMax);
-		multiplier = Mathf.Max (multiplier, multiplierMin);
+		float multiplier = (input.average_bpm / maxBPM);
 		
-		playerSpeed *= multiplier;
-		
-		playerSpeed = Mathf.Min(playerSpeed, maxSpeed);
-		//playerSpeed = Mathf.Max(playerSpeed, minSpeed);
+		playerSpeed = minSpeed + (maxSpeed - minSpeed) * multiplier;
 		
 		newPosition.x += playerSpeed * Time.deltaTime;
 		
