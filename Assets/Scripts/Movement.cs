@@ -5,12 +5,15 @@ public class Movement : MonoBehaviour {
 	
 	int laneNum = 2;
 	float laneLocation;
-	public static float playerSpeed = 10.2f;
-	float horizontal;
-	float minSpeed = 1.2f;
-	float maxSpeed = 24.0f;
-	
+	public float playerSpeed = 10.2f;
+	public float multiplier = 1.0f;
+	public float minSpeed = 1.2f;
+	public float maxSpeed = 24.0f;
+	public float bpmDivider = 90.0f;
+	public float multiplierMax = 1.1f;
+	public float multiplierMin = 0.9f;
 	public MovingTexture road;
+	public MicrophoneInput input;
 	
 	// Use this for initialization
 	void Start () 
@@ -53,20 +56,31 @@ public class Movement : MonoBehaviour {
 		}
 		newPosition.y = laneLocation;
 		Debug.Log (playerSpeed);
+		
 		// Changing speed
-		if (Input.GetKeyDown(KeyCode.A) && playerSpeed >= minSpeed) 
+		/*if (Input.GetKeyDown(KeyCode.A) && playerSpeed >= minSpeed) 
 		{
 			playerSpeed += -1.0f;
 		}
 		else if (Input.GetKeyDown(KeyCode.D) && playerSpeed < maxSpeed) 
 		{
 			playerSpeed += 1.0f;
-		}
+		}*/
+		
+		multiplier = (input.average_bpm / bpmDivider);
+		multiplier = Mathf.Min (multiplier, 1.002f);
+		multiplier = Mathf.Max (multiplier, 0.995f);
+		
+		playerSpeed *= multiplier;
+		
+		playerSpeed = Mathf.Min(playerSpeed, maxSpeed);
+		//playerSpeed = Mathf.Max(playerSpeed, minSpeed);
+		
 		newPosition.x += playerSpeed * Time.deltaTime;
 		
 		// calculating movement to object
 		transform.position = newPosition;
 		
-		road.OffsetSpeed = new Vector2((playerSpeed * Time.deltaTime) * 0.005f, 0);
+		road.OffsetSpeed = new Vector2(playerSpeed * Time.deltaTime * 0.001f, 0);
 	}
 }

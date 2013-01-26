@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Animations\spriteSheetAnimation.cs" />
+     <Compile Include="Assets\Scripts\MicrophoneInput.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
      <Compile Include="Assets\Scripts\MovingSceneryObject.cs" />
      <Compile Include="Assets\Scripts\MovingTexture.cs" />
