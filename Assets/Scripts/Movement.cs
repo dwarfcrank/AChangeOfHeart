@@ -59,22 +59,22 @@ public class Movement : MonoBehaviour {
 		Debug.Log (playerSpeed);
 		
 		// Changing speed
-		/*if (Input.GetKeyDown(KeyCode.A) && playerSpeed >= minSpeed) 
+		if (Input.GetKeyDown(KeyCode.A) && playerSpeed >= minSpeed) 
 		{
 			playerSpeed += -1.0f;
 		}
 		else if (Input.GetKeyDown(KeyCode.D) && playerSpeed < maxSpeed) 
 		{
 			playerSpeed += 1.0f;
-		}*/
+		}
 		
-		multiplier = (input.average_bpm / bpmDivider);
+		/*multiplier = (input.average_bpm / bpmDivider);
 		multiplier = Mathf.Min (multiplier, multiplierMax);
 		multiplier = Mathf.Max (multiplier, multiplierMin);
 		
 		playerSpeed *= multiplier;
 		
-		playerSpeed = Mathf.Min(playerSpeed, maxSpeed);
+		playerSpeed = Mathf.Min(playerSpeed, maxSpeed);*/
 		//playerSpeed = Mathf.Max(playerSpeed, minSpeed);
 		
 		newPosition.x += playerSpeed * Time.deltaTime;
