@@ -3,8 +3,9 @@ using System.Collections;
  
 class spriteSheetAnimation : MonoBehaviour
 {
-    public int columns = 6;
-    public int rows = 11;
+	public Texture2D[] death;
+    public int columns = 5;
+    public int rows = 1;
     public float framesPerSecond = 10f;
     //the current frame to display
     private int index = 0;
@@ -14,8 +15,8 @@ class spriteSheetAnimation : MonoBehaviour
         StartCoroutine(updateTiling());
  
         //set the tile size of the texture (in UV units), based on the rows and columns
-        Vector2 size = new Vector2(1f / columns, 1f / rows);
-        renderer.sharedMaterial.SetTextureScale("_MainTex", size);
+        /*Vector2 size = new Vector2(1f / columns, 1f / rows);
+        renderer.sharedMaterial.SetTextureScale("_MainTex", size);*/
     }
  
     private IEnumerator updateTiling()
@@ -30,10 +31,11 @@ class spriteSheetAnimation : MonoBehaviour
                 index = 0;
  
             //split into x and y indexes
-            Vector2 offset = new Vector2((float)index / columns - (index / columns), //x index
-                                          (index / columns) / (float)rows);          //y index
+            /*Vector2 offset = new Vector2((float)index / columns - (index / columns), //x index
+                                          (index / columns) / (float)rows);          //y index*/
  
-            renderer.sharedMaterial.SetTextureOffset("_MainTex", offset);
+            renderer.material.mainTexture = death[index];
+			//renderer.sharedMaterial.SetTextureOffset("_MainTex", offset);
             yield return new WaitForSeconds(1f / framesPerSecond);
         }
 		

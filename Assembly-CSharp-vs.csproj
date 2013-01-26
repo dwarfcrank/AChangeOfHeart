@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\bgTiling.cs" />
      <Compile Include="Assets\Scripts\death.cs" />
      <Compile Include="Assets\Scripts\deathCollision.cs" />
+     <Compile Include="Assets\Scripts\gameOver.cs" />
      <Compile Include="Assets\Scripts\grannyCollision.cs" />
      <Compile Include="Assets\Scripts\grannyMove.cs" />
      <Compile Include="Assets\Scripts\grannySpawn.cs" />

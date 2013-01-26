@@ -5,7 +5,7 @@ public class Movement : MonoBehaviour {
 	
 	int laneNum = 2;
 	float laneLocation;
-	public static float playerSpeed = 0.2f;
+	public static float playerSpeed = 10.2f;
 	float horizontal;
 	float minSpeed = 1.2f;
 	float maxSpeed = 24.0f;
