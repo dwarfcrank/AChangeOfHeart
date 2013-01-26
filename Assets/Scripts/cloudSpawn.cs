@@ -9,6 +9,7 @@ public class cloudSpawn : MonoBehaviour {
 	public static int spawned = 0;
 	//public float spawnWait = 3.0f;
 	public float spawnDelay = 1.0f;
+	int i = 1;
 	// Use this for initialization
 	void Start () {
 		StartCoroutine(Spawn());
@@ -21,10 +22,15 @@ public class cloudSpawn : MonoBehaviour {
 	IEnumerator Spawn() {
 		yield return new WaitForSeconds(spawnDelay);
 		do {
+			
 			spawnPoint = transform.position;
 			Instantiate(prefab, spawnPoint, Quaternion.Euler(90, 180, 0));
 			yield return new WaitForSeconds(1);
-			spawned++;
+			if (i < 2) {
+				i++;
+			} else {
+				i= 1;
+			};
 		} while (!deathCollision.gameOver);
 	}
 }
