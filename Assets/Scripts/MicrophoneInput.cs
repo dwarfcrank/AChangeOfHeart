@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(AudioSource))]
 public class MicrophoneInput : MonoBehaviour {
@@ -8,10 +9,7 @@ public class MicrophoneInput : MonoBehaviour {
 	
 	float loudness = 0;
 
-	uint numBeats = 5;
-	uint currBeat = 0;
-	float[] deltas;
-	float lastTime;
+	List<float> beats;
 
 	public float average_bpm;
 	public int totalBeats;
@@ -23,37 +21,50 @@ public class MicrophoneInput : MonoBehaviour {
 		while (!(Microphone.GetPosition(null) > 0)){} // Wait until the recording has started
 		audio.Play(); // Play the audio source!
 
-		lastTime = Time.time;
-		deltas = new float[numBeats];
-
+		beats = new List<float>();
 		totalBeats = 0;
 	}
 
-	void Update(){
+	uint av_update_count = 0;
+	public float window = 8;
+
+	void Update()
+	{
+		float now = Time.time;
+
 		loudness = GetAveragedVolume() * sensitivity;
 		if(loudness > threshold)
 		{
-			float now = Time.time;
-			float d = now - lastTime;
-
-			if(d > 0.2)		// echo protection
+			if(beats.Count > 0)		// echo protection
 			{
-				deltas[currBeat] = d;
-				lastTime = now;
-
-				currBeat++;
-				currBeat = currBeat % numBeats;
-
-				float av_d = GetAverageDelta();
-				average_bpm = 60.0f / av_d;
-
-				totalBeats++;
-
+				float prev = beats[beats.Count - 1];
+				if(now - prev > 0.2)
+				{
+					beats.Add(now);
+					totalBeats++;
+				}
+	
 				Debug.Log("Loudness: " + loudness);
-				Debug.Log("Last delta: " + d);
-				Debug.Log("Average delta: " + av_d);
-				Debug.Log("Average BPM: " + average_bpm);
 			}
+			else
+			{
+				beats.Add(now);
+				totalBeats++;
+			}
+		}
+
+		// Run average once in a while
+		av_update_count++;
+		if(av_update_count % 10 == 0)
+		{
+			float begin = now - window;
+			while(beats.Count > 0 && beats[0] < begin)
+			{
+				beats.RemoveAt(0);
+			}
+
+			// The easy way
+			average_bpm = beats.Count / window * 60.0f;
 		}
 	}
 
@@ -67,15 +78,5 @@ public class MicrophoneInput : MonoBehaviour {
 			a += Mathf.Abs(s);
 		}
 		return a/256;
-	}
-
-	float GetAverageDelta()
-	{
-		float sum = 0;
-		foreach(float d in deltas)
-		{
-			sum += d;
-		}
-		return sum/numBeats;
 	}
 }
