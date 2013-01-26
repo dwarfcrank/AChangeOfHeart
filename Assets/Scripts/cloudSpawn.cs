@@ -14,9 +14,6 @@ public class cloudSpawn : MonoBehaviour {
 	int i = 1;
 	// Use this for initialization
 	void Start () {
-		float texAspect = prefab.renderer.material.mainTexture.width / prefab.renderer.material.mainTexture.height;
-		
-		scale = new Vector3(1.0f, 1.0f / texAspect, 1.0f);
 		
 		StartCoroutine(Spawn());
 	}
@@ -31,7 +28,7 @@ public class cloudSpawn : MonoBehaviour {
 			
 			spawnPoint = transform.position;
 			var t = (Transform)Instantiate(prefab, spawnPoint, Quaternion.Euler(90, 180, 0));
-			t.localScale = scale;
+			
 			
 			yield return new WaitForSeconds(1);
 			if (i < 2) {
