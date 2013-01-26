@@ -11,8 +11,10 @@ public class MicrophoneInput : MonoBehaviour {
 
 	List<float> beats;
 
-	public float average_bpm;
+	public float average_bpm = 0;
 	public int totalBeats;
+
+	float average_bpm_target = 0;
 
 	void Start() {
 		audio.clip = Microphone.Start(null, true, 10, 44100);
@@ -64,8 +66,12 @@ public class MicrophoneInput : MonoBehaviour {
 			}
 
 			// The easy way
-			average_bpm = beats.Count / window * 60.0f;
+			average_bpm_target = beats.Count / window * 60.0f;
 		}
+
+
+		// Smoothing
+		average_bpm += (average_bpm_target - average_bpm) * 0.1f;
 	}
 
 	float GetAveragedVolume()
