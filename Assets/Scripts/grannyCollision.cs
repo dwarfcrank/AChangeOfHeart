@@ -6,9 +6,10 @@ public class grannyCollision : MonoBehaviour {
 	public static int killedGrannies = 0;
 	public const int scoreLossPerGranny = 10;
 	
+	public ParticleSystem explosion;
+	
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	public static int GetTotalScoreLoss()
@@ -20,7 +21,12 @@ public class grannyCollision : MonoBehaviour {
 	{
 		if(collision.gameObject.tag=="Player")
 		{	
-			Destroy(this.gameObject);
+			var pos = gameObject.transform.position;
+						
+			Destroy (gameObject);
+			
+			var particle = (ParticleSystem)Instantiate (explosion, pos, Quaternion.identity);
+			particle.Play ();
 			
 			var movement = collision.gameObject.GetComponent<Movement>();
 			
