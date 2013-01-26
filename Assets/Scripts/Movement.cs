@@ -10,10 +10,11 @@ public class Movement : MonoBehaviour {
 	public float minSpeed = 1.2f;
 	public float maxSpeed = 24.0f;
 	public float bpmDivider = 90.0f;
-	public float multiplierMax = 1.1f;
+	public float multiplierMax = 1.01f;
 	public float multiplierMin = 0.9f;
 	public MovingTexture road;
 	public MicrophoneInput input;
+	public bool hitGranny = false;
 	
 	// Use this for initialization
 	void Start () 
@@ -68,8 +69,8 @@ public class Movement : MonoBehaviour {
 		}*/
 		
 		multiplier = (input.average_bpm / bpmDivider);
-		multiplier = Mathf.Min (multiplier, 1.002f);
-		multiplier = Mathf.Max (multiplier, 0.995f);
+		multiplier = Mathf.Min (multiplier, multiplierMax);
+		multiplier = Mathf.Max (multiplier, multiplierMin);
 		
 		playerSpeed *= multiplier;
 		
