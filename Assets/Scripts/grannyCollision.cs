@@ -16,7 +16,7 @@ public class grannyCollision : MonoBehaviour {
 			
 			var movement = collision.gameObject.GetComponent<Movement>();
 			
-			movement.playerSpeed -= 5.0f;
+			movement.playerSpeed = movement.minSpeed;
 		}
 	}
 	// Update is called once per frame
