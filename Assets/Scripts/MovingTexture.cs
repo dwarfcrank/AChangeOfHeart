@@ -14,6 +14,12 @@ public class MovingTexture : MonoBehaviour {
 	void Update () {
 		var offset = OffsetSpeed * Time.time;
 		
+		// HACK
+		if(deathCollision.gameOver)
+		{
+			offset = Vector2.zero;
+		}
+		
 		gameObject.renderer.material.mainTextureOffset += offset;
 	}
 }
