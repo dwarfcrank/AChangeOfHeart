@@ -11,6 +11,7 @@ public class cloudSpawn : MonoBehaviour {
 	public static int spawned = 0;
 	//public float spawnWait = 3.0f;
 	public float spawnDelay = 1.0f;
+	int i = 1;
 	// Use this for initialization
 	void Start () {
 		float texAspect = prefab.renderer.material.mainTexture.width / prefab.renderer.material.mainTexture.height;
@@ -27,12 +28,17 @@ public class cloudSpawn : MonoBehaviour {
 	IEnumerator Spawn() {
 		yield return new WaitForSeconds(spawnDelay);
 		do {
+			
 			spawnPoint = transform.position;
 			var t = (Transform)Instantiate(prefab, spawnPoint, Quaternion.Euler(90, 180, 0));
 			t.localScale = scale;
 			
 			yield return new WaitForSeconds(1);
-			spawned++;
+			if (i < 2) {
+				i++;
+			} else {
+				i= 1;
+			};
 		} while (!deathCollision.gameOver);
 	}
 }
