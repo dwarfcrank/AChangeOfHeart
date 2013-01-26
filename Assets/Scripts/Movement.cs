@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour {
 	float minSpeed = 1.2f;
 	float maxSpeed = 24.0f;
 	
+	public MovingTexture road;
+	
 	// Use this for initialization
 	void Start () 
 	{
@@ -65,5 +67,6 @@ public class Movement : MonoBehaviour {
 		// calculating movement to object
 		transform.position = newPosition;
 		
+		road.OffsetSpeed = new Vector2((playerSpeed * Time.deltaTime) * 0.005f, 0);
 	}
 }
