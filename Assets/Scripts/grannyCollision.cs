@@ -2,10 +2,18 @@ using UnityEngine;
 using System.Collections;
 
 public class grannyCollision : MonoBehaviour {
-
+	
+	public static int killedGrannies = 0;
+	public const int scoreLossPerGranny = 10;
+	
 	// Use this for initialization
 	void Start () {
 	
+	}
+	
+	public static int GetTotalScoreLoss()
+	{
+		return killedGrannies * scoreLossPerGranny;
 	}
 	
 	void OnCollisionEnter(Collision collision)
@@ -16,7 +24,9 @@ public class grannyCollision : MonoBehaviour {
 			
 			var movement = collision.gameObject.GetComponent<Movement>();
 			
-			movement.playerSpeed -= 5.0f;
+			movement.playerSpeed = movement.minSpeed;
+			
+			killedGrannies++;
 		}
 	}
 	// Update is called once per frame

@@ -54,14 +54,14 @@ public class Movement : MonoBehaviour {
 		newPosition.y = laneLocation;
 		
 		// Changing speed
-		if (Input.GetKeyDown(KeyCode.A) && playerSpeed >= minSpeed) 
+		/*if (Input.GetKeyDown(KeyCode.A) && playerSpeed >= minSpeed) 
 		{
 			playerSpeed += -1.0f;
 		}
 		else if (Input.GetKeyDown(KeyCode.D) && playerSpeed < maxSpeed) 
 		{
 			playerSpeed += 1.0f;
-		}
+		}*/
 		
 		float multiplier = (input.average_bpm / maxBPM);
 		float targetSpeed = minSpeed + (maxSpeed - minSpeed) * multiplier;
@@ -74,10 +74,10 @@ public class Movement : MonoBehaviour {
 		}
 		else if(targetSpeed < playerSpeed)
 		{
-			playerSpeed -= (playerSpeed - targetSpeed) * Time.deltaTime * 8;
+			playerSpeed -= (playerSpeed - targetSpeed) * Time.deltaTime * 1;
 		}
 		
-		playerSpeed = minSpeed + (maxSpeed - minSpeed) * multiplier;
+		playerSpeed = Mathf.Min(maxSpeed, playerSpeed);
 	
 		newPosition.x += playerSpeed * Time.deltaTime;
 		

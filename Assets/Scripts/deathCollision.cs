@@ -10,14 +10,14 @@ public class deathCollision : MonoBehaviour {
 	void Start () {
 	
 	}
-void OnCollisionEnter(Collision collision)
+	void OnCollisionEnter(Collision collision)
 	{
 		
-			if(collision.gameObject.tag=="Player")
-			{	
-				//Destroy(player);
-				//gameOver = true;
-			}
+		if(collision.gameObject.tag=="Player")
+		{	
+			Destroy(player);
+			gameOver = true;
+		}
 		
 	}
 	// Update is called once per frame
