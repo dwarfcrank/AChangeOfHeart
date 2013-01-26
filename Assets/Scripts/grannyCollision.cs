@@ -13,8 +13,10 @@ void OnCollisionEnter(Collision collision)
 			if(collision.gameObject.tag=="Player")
 			{	
 				Destroy(this.gameObject);
-				if (Movement.playerSpeed > 0.2f) {
-					Movement.playerSpeed += -1.0f;
+			
+				var movement = collision.gameObject.GetComponent<Movement>();
+				if (movement.playerSpeed > 0.2f) {
+					movement.playerSpeed += -1.0f;
 				}	
 			}
 		
