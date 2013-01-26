@@ -39,14 +39,9 @@ function Player(){
     if(cur_still < number_of_stills)
     {
         var MainTex = movie_stills[cur_still];
-
         renderer.material.SetTexture("_MainTex", MainTex);
-
         cur_still += 1;
-
-        var fps_fixer = fps*3;
-
-        var wait_time = 1.0/fps_fixer;
+        var wait_time = 1.0/fps;
 
         yield WaitForSeconds(wait_time);
     }
