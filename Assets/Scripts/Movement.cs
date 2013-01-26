@@ -11,9 +11,7 @@ public class Movement : MonoBehaviour {
 	public float maxBPM = 90.0f;
 	public MovingTexture road;
 	public MicrophoneInput input;
-	public bool hitGranny = false;
 
-	
 	// Use this for initialization
 	void Start () 
 	{
@@ -66,8 +64,18 @@ public class Movement : MonoBehaviour {
 		}*/
 		
 		float multiplier = (input.average_bpm / maxBPM);
+		float targetSpeed = minSpeed + (maxSpeed - minSpeed) * multiplier;
 		
-		playerSpeed = minSpeed + (maxSpeed - minSpeed) * multiplier;
+		targetSpeed = Mathf.Min(maxSpeed, targetSpeed);
+		
+		if(targetSpeed > playerSpeed)
+		{
+			playerSpeed += (targetSpeed - playerSpeed) * Time.deltaTime * 2;
+		}
+		else if(targetSpeed < playerSpeed)
+		{
+			playerSpeed -= (playerSpeed - targetSpeed) * Time.deltaTime * 8;
+		}
 		
 		newPosition.x += playerSpeed * Time.deltaTime;
 		

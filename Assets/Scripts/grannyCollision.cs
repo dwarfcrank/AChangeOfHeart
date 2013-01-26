@@ -13,6 +13,10 @@ public class grannyCollision : MonoBehaviour {
 		if(collision.gameObject.tag=="Player")
 		{	
 			Destroy(this.gameObject);
+			
+			var movement = collision.gameObject.GetComponent<Movement>();
+			
+			movement.playerSpeed -= 5.0f;
 		}
 	}
 	// Update is called once per frame
