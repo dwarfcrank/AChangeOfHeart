@@ -56,6 +56,11 @@ public class Pause : MonoBehaviour {
 					paused=false;
 				}
 			}
+			else {
+				GUI.Label (new Rect (Screen.width/2-100,Screen.height*12/22-15, 200, 40), 
+					string.Format("Score: {0}", GameObject.Find ("ScoreText").GetComponent<ScoreText>().score));
+				} // SCORE
+		        
 			if (GUI.Button (new Rect (Screen.width/2-100, Screen.height*15/22-15, 200, 40), "")) // Restart
 			        {
 						Application.LoadLevel(Application.loadedLevel);
