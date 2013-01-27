@@ -24,6 +24,11 @@ function Start()
 
 function Update ()
 {
+    if(Input.anyKeyDown)
+    {
+        Application.LoadLevel("mainLevel");
+    }        
+
     if(play == true)
     {
         Player();
@@ -47,7 +52,7 @@ function Player(){
         cur_still += 1;
         if(cur_still == number_of_stills)
         {
-            Application.LoadLevel("testscene");
+            Application.LoadLevel("mainLevel");
         }
     }
 
