@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-	
+		input = GameObject.Find("Beat Detector").GetComponent<MicrophoneInput>();
 	}
 	
 	// Update is called once per frame
