@@ -27,6 +27,9 @@ public class grannyCollision : MonoBehaviour {
 			movement.playerSpeed = movement.minSpeed;
 			
 			movement.SubtractScore(scoreLossPerGranny);
+
+			var crash_sound = collision.gameObject.transform.Find("Crash");
+			crash_sound.GetComponent<AudioSource>().Play();
 		}
 	}
 	// Update is called once per frame
