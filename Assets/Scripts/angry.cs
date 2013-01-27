@@ -32,7 +32,6 @@ public class angry : MonoBehaviour {
 			GameObject.Find("cloud(Clone)").renderer.material = angryCloud; 
 		}
 		catch(System.Exception ex) {}
-		Debug.Log(Movement.screenArea);
 		if (isAngry) {
 		sky.renderer.material.mainTexture = angrySky;
 		sun.renderer.material.mainTexture = angrySun;

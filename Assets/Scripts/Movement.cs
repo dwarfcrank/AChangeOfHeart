@@ -13,19 +13,41 @@ public class Movement : MonoBehaviour {
 	public MicrophoneInput input;
 	public static int screenArea;
 	public Vector2 camPosition2D;
-
+	public int score = 0;
+	
+	private int totalBeatsLastFrame;
+	
 	// Use this for initialization
 	void Start () 
 	{
 		input = GameObject.Find("Beat Detector").GetComponent<MicrophoneInput>();
+		totalBeatsLastFrame = input.totalBeats;
+	}
+	
+	public void SubtractScore(int num)
+	{
+		int newScore = score - num;
+		
+		score = Mathf.Max (newScore, 0);
+	}
+	
+	public void AddScore(int num)
+	{
+		score += num;
 	}
 	
 	// Update is called once per frame
 	void Update () 
-	{
+	{		
+		if(totalBeatsLastFrame < input.totalBeats)
+		{
+			AddScore (input.totalBeats - totalBeatsLastFrame);
+			totalBeatsLastFrame = input.totalBeats;
+		}
+		
 		Vector3 newPosition = transform.position;
 		camPosition2D = Camera.main.WorldToScreenPoint(newPosition);
-		Debug.Log(camPosition2D.x);
+		
 		if(camPosition2D.x < (Screen.width/3)) {
 			screenArea = 1;
 		}
