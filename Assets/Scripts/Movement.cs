@@ -25,7 +25,7 @@ public class Movement : MonoBehaviour {
 	{
 		Vector3 newPosition = transform.position;
 		camPosition2D = Camera.main.WorldToScreenPoint(newPosition);
-		Debug.Log(camPosition2D.x);
+		
 		if(camPosition2D.x < (Screen.width/3)) {
 			screenArea = 1;
 		}
