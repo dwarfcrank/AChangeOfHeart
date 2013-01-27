@@ -3,18 +3,12 @@ using System.Collections;
 
 public class grannyCollision : MonoBehaviour {
 	
-	public static int killedGrannies = 0;
-	public const int scoreLossPerGranny = 10;
+	public int scoreLossPerGranny = 2;
 	
 	public ParticleSystem explosion;
 	
 	// Use this for initialization
 	void Start () {
-	}
-	
-	public static int GetTotalScoreLoss()
-	{
-		return killedGrannies * scoreLossPerGranny;
 	}
 	
 	void OnCollisionEnter(Collision collision)
@@ -32,7 +26,7 @@ public class grannyCollision : MonoBehaviour {
 			
 			movement.playerSpeed = movement.minSpeed;
 			
-			killedGrannies++;
+			movement.SubtractScore(scoreLossPerGranny);
 		}
 	}
 	// Update is called once per frame
