@@ -15,13 +15,14 @@ public class ScoreText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		score = mic.totalBeats - grannyCollision.GetTotalScoreLoss();
+		score = Mathf.Max(0, score);
 	}
 	
 	void OnGUI() {
-		score = mic.totalBeats - grannyCollision.GetTotalScoreLoss();
+		
 		string text = string.Format("{0}", score);
 		
-		guiText.transform.position = new Vector3(0.0f, 1.0f, 0.0f);
 		guiText.text = text;
 	}
 }
