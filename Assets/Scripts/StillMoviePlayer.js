@@ -16,9 +16,7 @@ function Start()
         }
 
         var p = path + s;
-        Debug.Log(p);
         movie_stills[i] = Resources.Load(p) as Texture;
-        Debug.Log(movie_stills[i]);
     }
 }
 
@@ -37,6 +35,10 @@ function Update ()
 
 private var cur_still = 0;
 
+var trunk_sound: AudioSource;
+var crash_sound: AudioSource;
+var start_sound: AudioSource;
+
 function Player(){
 
     play = false;
@@ -53,6 +55,19 @@ function Player(){
         if(cur_still == number_of_stills)
         {
             Application.LoadLevel("mainLevel");
+        }
+
+        if(cur_still == 184 || cur_still == 197)
+        {
+            trunk_sound.Play();
+        }
+        else if(cur_still == 200)
+        {
+            start_sound.Play();
+        }
+        else if(cur_still == 190)
+        {
+            crash_sound.Play();
         }
     }
 
