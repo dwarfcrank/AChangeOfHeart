@@ -5,7 +5,6 @@ public class grannyMove : MonoBehaviour {
 	
 	public float enemySpeed = 3.0f;
 	public float fallSpeed = 0.1f;
-	private bool isDead = false;
 
 	// Use this for initialization
 	void Start () {
