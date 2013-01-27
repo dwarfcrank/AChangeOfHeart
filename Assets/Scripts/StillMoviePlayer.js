@@ -40,12 +40,16 @@ function Player(){
     {
         var MainTex = movie_stills[cur_still];
         renderer.material.SetTexture("_MainTex", MainTex);
-        cur_still += 1;
         var wait_time = 1.0/fps;
 
         yield WaitForSeconds(wait_time);
+
+        cur_still += 1;
+        if(cur_still == number_of_stills)
+        {
+            Application.LoadLevel("testscene");
+        }
     }
 
     play = true;
-
 }

@@ -10,7 +10,7 @@ public class MicrophoneInput : MonoBehaviour {
 	// indicates how much higher than noise_threshold must be the sound input to trigger a beat
 	// detection.
 
-	private float sensitivity = 1000;
+	public float sensitivity = 1000;
 	private const float noise_threshold = 10;
 	public float signal_noise_ratio = 5;
 	
@@ -19,7 +19,7 @@ public class MicrophoneInput : MonoBehaviour {
 	public float average_bpm = 0;
 	public int totalBeats;
 
-	public bool calibrating = true;
+	public bool calibrating = false;
 
 	float average_bpm_target = 0;
 
@@ -126,10 +126,17 @@ public class MicrophoneInput : MonoBehaviour {
 			sensitivity -= 10;
 		}
 
+		Debug.Log("Sensitivity update: " + sensitivity);
+
 		if(wasAbove && wasBelow)
 		{
 			calibrating = false;
 			Debug.Log("Calibrated to sensitivity: " + sensitivity);
 		}
+	}
+
+	void Awake()
+	{
+	    DontDestroyOnLoad(transform.gameObject);
 	}
 }
