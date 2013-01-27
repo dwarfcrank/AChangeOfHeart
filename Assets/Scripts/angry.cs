@@ -1,4 +1,5 @@
 using UnityEngine;
+
 using System.Collections;
 
 public class angry : MonoBehaviour {
@@ -26,7 +27,12 @@ public class angry : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		GameObject.Find("cloud(Clone)").renderer.material = angryCloud;
+		// CHEAPEST HACK EVER :D
+		try 
+		{
+			GameObject.Find("cloud(Clone)").renderer.material = angryCloud; 
+		}
+		catch(System.Exception ex) {}
 		Debug.Log(Movement.screenArea);
 		if (isAngry) {
 		sky.renderer.material.mainTexture = angrySky;
@@ -37,7 +43,12 @@ public class angry : MonoBehaviour {
 			
 		}
 		else if (!isAngry) {
-			GameObject.Find("cloud(Clone)").renderer.material = happyCloud;
+			// CHEAPEST HACK EVER part deux
+			try
+			{
+				GameObject.Find("cloud(Clone)").renderer.material = happyCloud;
+			}
+			catch(System.Exception ex) {}
 		sky.renderer.material.mainTexture = happySky;
 		sun.renderer.material.mainTexture = happySun;
 		angryText.renderer.enabled = false;
