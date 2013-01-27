@@ -59,7 +59,7 @@ public class MicrophoneInput : MonoBehaviour {
 					totalBeats++;
 				}
 	
-				Debug.Log("Loudness: " + loudness);
+				Debug.Log("Loudness: " + loudness + ", BPM: " + average_bpm);
 			}
 			else
 			{

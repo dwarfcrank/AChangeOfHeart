@@ -16,12 +16,15 @@ public class Movement : MonoBehaviour {
 	public int score = 0;
 	
 	private int totalBeatsLastFrame;
-	
+
+	private float last_input;
+
 	// Use this for initialization
 	void Start () 
 	{
 		input = GameObject.Find("Beat Detector").GetComponent<MicrophoneInput>();
 		totalBeatsLastFrame = input.totalBeats;
+		last_input = Time.time;
 	}
 	
 	public void SubtractScore(int num)
@@ -37,6 +40,8 @@ public class Movement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+
+
 	void Update () 
 	{		
 		if(totalBeatsLastFrame < input.totalBeats)
@@ -59,20 +64,28 @@ public class Movement : MonoBehaviour {
 		}
 		
 		// Changing lanes
-		if (Input.GetKeyDown(KeyCode.W)) 
+
+		if(Time.time - last_input > 0.1)
 		{
-			if (laneNum > 1) 
+			if (Input.GetAxis("Vertical") > 0) 
 			{
-				laneNum--;
-			}
-		} 
-		else if (Input.GetKeyDown(KeyCode.S))
-		{
-			if (laneNum < 3) 
+				if (laneNum > 1) 
+				{
+					laneNum--;
+				}
+
+				last_input = Time.time;
+			} 
+			else if (Input.GetAxis("Vertical") < 0)
 			{
-				laneNum++;
-			}
-		} 
+				if (laneNum < 3) 
+				{
+					laneNum++;
+				}
+
+				last_input = Time.time;
+			} 
+		}
 		
 		if (laneNum == 1) 
 		{
@@ -109,7 +122,7 @@ public class Movement : MonoBehaviour {
 		}
 		else if(targetSpeed < playerSpeed)
 		{
-			playerSpeed -= (playerSpeed - targetSpeed) * Time.deltaTime * 1;
+			playerSpeed -= (playerSpeed - targetSpeed) * Time.deltaTime * 2;
 		}
 		
 		playerSpeed = Mathf.Min(maxSpeed, playerSpeed);

@@ -24,8 +24,8 @@ public class grannySpawn : MonoBehaviour {
 		do {			
 			spawnPlace = Random.Range(1,4);
 			spawnPoint = transform.position;
-			Debug.Log (spawnPlace);
-				if (spawnPlace == 1) {
+			//Debug.Log (spawnPlace);
+			if (spawnPlace == 1) {
 				spawnPoint.y = 0.9f; // Lane 1
 			}
 			else if (spawnPlace == 2) {
