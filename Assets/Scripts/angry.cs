@@ -19,7 +19,6 @@ public class angry : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		//StartCoroutine (AngryTimer());
 		happyText.renderer.enabled = false;
 		angryText.renderer.enabled = false;
 		isAngry = false;
@@ -39,7 +38,6 @@ public class angry : MonoBehaviour {
 		sun.renderer.material.mainTexture = angrySun;
 		angryText.renderer.enabled = true;
 		happyText.renderer.enabled = false;
-			cloud.renderer.material = angryCloud;
 			
 		}
 		else if (!isAngry) {
@@ -53,7 +51,6 @@ public class angry : MonoBehaviour {
 		sun.renderer.material.mainTexture = happySun;
 		angryText.renderer.enabled = false;
 		if (Movement.screenArea != 2) {happyText.renderer.enabled = true;}
-		cloud.renderer.material = happyCloud;
 			
 		}
 		if(Movement.screenArea == 1) {
@@ -68,12 +65,4 @@ public class angry : MonoBehaviour {
 				happyText.renderer.enabled = true;
 			}
 	}
-	/*IEnumerator AngryTimer() {
-		do {
-		isAngry = false;
-		yield return new WaitForSeconds(5);
-		isAngry = true;
-		yield return new WaitForSeconds(5);
-		} while (!deathCollision.gameOver);
-	}*/
 }
