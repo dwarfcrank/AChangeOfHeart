@@ -50,7 +50,9 @@
      <Compile Include="Assets\Scripts\MovingSceneryObject.cs" />
      <Compile Include="Assets\Scripts\MovingTexture.cs" />
      <Compile Include="Assets\Scripts\Pause.cs" />
+     <Compile Include="Assets\Scripts\ScoreText.cs" />
      <Compile Include="Assets\Scripts\TimedTextureOffset.cs" />
+     <Compile Include="Assets\Scripts\Tutorial.cs" />
      <Compile Include="Assets\Scripts\angry.cs" />
      <Compile Include="Assets\Scripts\cloudMove.cs" />
      <Compile Include="Assets\Scripts\cloudSpawn.cs" />
@@ -62,73 +64,6 @@
      <Compile Include="Assets\Scripts\houseMove.cs" />
      <Compile Include="Assets\Scripts\houseSpawn.cs" />
      <Compile Include="Assets\Scripts\roadTiling.cs" />
-     <Compile Include="Assets\Scripts\startMenu.cs" />
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-	<ProductVersion>10.0.20506</ProductVersion>
-	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{22D91308-8D85-F288-75D7-505EA0B76F99}</ProjectGuid>
-	<OutputType>Library</OutputType>
-	<AppDesignerFolder>Properties</AppDesignerFolder>
-	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
-	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-	<FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	<DebugSymbols>true</DebugSymbols>
-	<DebugType>full</DebugType>
-	<Optimize>false</Optimize>
-	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_0_0;UNITY_4_0;UNITY_STANDALONE_WIN;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-	<DebugType>pdbonly</DebugType>
-	<Optimize>true</Optimize>
-	<OutputPath>Temp\bin\Release\</OutputPath>
-	<DefineConstants>TRACE</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
-  </PropertyGroup>
-  <ItemGroup>
-	<Reference Include="System" />
-    <Reference Include="System.XML" />
-	<Reference Include="System.Core" />
-	<Reference Include="UnityEngine">
-	  <HintPath>/Applications/Unity 4.0.0/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
-	</Reference>
-	<Reference Include="UnityEditor">
-	  <HintPath>/Applications/Unity 4.0.0/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
-	</Reference>
-  </ItemGroup>
-  <ItemGroup>
-     <Compile Include="Assets\Animations\spriteSheetAnimation.cs" />
-     <Compile Include="Assets\Scripts\MicrophoneInput.cs" />
-     <Compile Include="Assets\Scripts\Movement.cs" />
-     <Compile Include="Assets\Scripts\MovingSceneryObject.cs" />
-     <Compile Include="Assets\Scripts\MovingTexture.cs" />
-     <Compile Include="Assets\Scripts\Pause.cs" />
-     <Compile Include="Assets\Scripts\TimedTextureOffset.cs" />
-     <Compile Include="Assets\Scripts\bgTiling.cs" />
-     <Compile Include="Assets\Scripts\cloudMove.cs" />
-     <Compile Include="Assets\Scripts\cloudSpawn.cs" />
-     <Compile Include="Assets\Scripts\death.cs" />
-     <Compile Include="Assets\Scripts\deathCollision.cs" />
-     <Compile Include="Assets\Scripts\gameOver.cs" />
-     <Compile Include="Assets\Scripts\grannyCollision.cs" />
-     <Compile Include="Assets\Scripts\grannyMove.cs" />
-     <Compile Include="Assets\Scripts\grannySpawn.cs" />
-     <Compile Include="Assets\Scripts\houseMove.cs" />
-     <Compile Include="Assets\Scripts\houseSpawn.cs" />
-     <Compile Include="Assets\Scripts\roadTiling.cs" />
-     <Compile Include="Assets\Scripts\startMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
