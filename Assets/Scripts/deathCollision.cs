@@ -8,6 +8,7 @@ public class deathCollision : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		gameOver = false;
 	
 	}
 	void OnCollisionEnter(Collision collision)

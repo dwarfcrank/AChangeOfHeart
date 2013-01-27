@@ -21,7 +21,7 @@ public class houseMove : MonoBehaviour {
 	}
 	void OnBecameInvisible() {
 		Destroy(this.gameObject);
-		houseSpawn.spawned--;
+		
 		
 	}
 }

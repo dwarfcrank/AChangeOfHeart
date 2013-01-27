@@ -18,32 +18,51 @@ public class angry : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		StartCoroutine (AngryTimer());
+		//StartCoroutine (AngryTimer());
+		happyText.renderer.enabled = false;
+		angryText.renderer.enabled = false;
+		isAngry = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		GameObject.Find("cloud(Clone)").renderer.material = angryCloud;
+		Debug.Log(Movement.screenArea);
 		if (isAngry) {
 		sky.renderer.material.mainTexture = angrySky;
 		sun.renderer.material.mainTexture = angrySun;
 		angryText.renderer.enabled = true;
 		happyText.renderer.enabled = false;
-		cloud.renderer.material = angryCloud;
+			cloud.renderer.material = angryCloud;
+			
 		}
 		else if (!isAngry) {
+			GameObject.Find("cloud(Clone)").renderer.material = happyCloud;
 		sky.renderer.material.mainTexture = happySky;
 		sun.renderer.material.mainTexture = happySun;
 		angryText.renderer.enabled = false;
-		happyText.renderer.enabled = true;
+		if (Movement.screenArea != 2) {happyText.renderer.enabled = true;}
 		cloud.renderer.material = happyCloud;
+			
 		}
+		if(Movement.screenArea == 1) {
+				isAngry = true;
+			}
+		else if(Movement.screenArea == 2) {
+				isAngry = false;
+				happyText.renderer.enabled = false;
+			}
+		else if(Movement.screenArea == 3) {
+				isAngry = false;
+				happyText.renderer.enabled = true;
+			}
 	}
-	IEnumerator AngryTimer() {
+	/*IEnumerator AngryTimer() {
 		do {
 		isAngry = false;
 		yield return new WaitForSeconds(5);
 		isAngry = true;
 		yield return new WaitForSeconds(5);
 		} while (!deathCollision.gameOver);
-	}
+	}*/
 }

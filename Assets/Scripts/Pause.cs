@@ -3,19 +3,22 @@ using System.Collections;
 
 public class Pause : MonoBehaviour {
 	
-	bool paused = false;
+	private bool paused = false;
 	bool dead = false;
+	public GUISkin PointSkin;
+	public Texture2D background;
+	public GUISkin PointSkin2;
+	public GUISkin PointSkin3;
+	bool endlevel=false;
 	// Use this for initialization
 	void Start () {
-	
+		Time.timeScale=1;
+		paused = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (deathCollision.gameOver) {
-			dead = true;
-		}
-		if (Input.GetKeyDown(KeyCode.Escape) || dead) 
+		if (Input.GetKeyDown(KeyCode.Escape)&& !deathCollision.gameOver) 
 		{
 			if(!paused)
 			{
@@ -27,33 +30,42 @@ public class Pause : MonoBehaviour {
 				Time.timeScale = 1;
 				paused = false;
 			}
-			
 		}
-		Debug.Log (Time.timeScale);
 	}
-	void OnGUI () 
+		void OnGUI () 
 	{
-		if(paused || dead) {
-			
-				
-					if (GUI.Button (new Rect (Screen.width/2-80,10, 170, 20), "Resume")) 
-					{
-						Time.timeScale= 1;
-						paused=false;
-					}
-				
-				if (GUI.Button (new Rect (Screen.width/2-80,50, 170, 20), "Restart")) 
-			    {
-					Time.timeScale= 1;
-					paused=false;
-					Application.LoadLevel(Application.loadedLevel);
-				}
-				if (GUI.Button (new Rect (Screen.width/2-80,90, 170, 20), "Quit")) 
-			    {
-					Application.Quit();
-				}
-				dead = false;
+		//GUI.matrix =Matrix4x4.TRS (new Vector3(0, 0, 0),Quaternion.Euler(0,0,0),new Vector3 (rx, ry, 1)); 
+		
+		if (paused) {
+			GUI.skin = PointSkin2;
+		}
+		else if (deathCollision.gameOver) {
+			GUI.skin = PointSkin3;
 		}
 		
+		if(paused || deathCollision.gameOver)
+		{
+			Time.timeScale = 0; // testing stop time on pause
+
+			GUI.Box(new Rect(0,0,Screen.width,Screen.height),"");
+			if(!deathCollision.gameOver)
+			{
+				if (GUI.Button (new Rect (Screen.width/2-100,Screen.height*12/22-15, 200, 40), "")) // RESUME
+		        {
+					Time.timeScale= 1;
+					paused=false;
+				}
+			}
+			if (GUI.Button (new Rect (Screen.width/2-100, Screen.height*15/22-15, 200, 40), "")) // Restart
+			        {
+						Application.LoadLevel(Application.loadedLevel);
+						
+					}
+			if(GUI.Button (new Rect (Screen.width/2-100,Screen.height*4/5-15, 200, 40), "")) // Quit
+			{
+				Application.Quit();
+			}
+			
+		}
 	}
 }

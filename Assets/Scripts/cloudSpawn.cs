@@ -6,6 +6,7 @@ public class cloudSpawn : MonoBehaviour {
 	public Transform prefab;
 	Vector3 spawnPoint;
 	Vector3 scale;
+
 	
 	float spawnTime;
 	public static int spawned = 0;
@@ -28,8 +29,6 @@ public class cloudSpawn : MonoBehaviour {
 			
 			spawnPoint = transform.position;
 			var t = (Transform)Instantiate(prefab, spawnPoint, Quaternion.Euler(90, 180, 0));
-			
-			
 			yield return new WaitForSeconds(1);
 			if (i < 2) {
 				i++;

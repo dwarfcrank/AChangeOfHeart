@@ -21,6 +21,6 @@ public class cloudMove : MonoBehaviour {
 	}
 	void OnBecameInvisible() {
 		Destroy(this.gameObject);
-		cloudSpawn.spawned--;
+		
 	}
 }
