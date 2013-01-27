@@ -27,20 +27,21 @@ public class Pause : MonoBehaviour {
 				Time.timeScale = 1;
 				paused = false;
 			}
-			dead = false;
+			
 		}
+		Debug.Log (Time.timeScale);
 	}
 	void OnGUI () 
 	{
-		if(paused) {
+		if(paused || dead) {
 			
-				if (!deathCollision.gameOver) {
+				
 					if (GUI.Button (new Rect (Screen.width/2-80,10, 170, 20), "Resume")) 
 					{
 						Time.timeScale= 1;
 						paused=false;
 					}
-				}
+				
 				if (GUI.Button (new Rect (Screen.width/2-80,50, 170, 20), "Restart")) 
 			    {
 					Time.timeScale= 1;
@@ -51,7 +52,7 @@ public class Pause : MonoBehaviour {
 			    {
 					Application.Quit();
 				}
-			
+				dead = false;
 		}
 		
 	}

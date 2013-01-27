@@ -11,6 +11,8 @@ public class Movement : MonoBehaviour {
 	public float maxBPM = 90.0f;
 	public MovingTexture road;
 	public MicrophoneInput input;
+	public static int screenArea;
+	public Vector2 camPosition2D;
 
 	// Use this for initialization
 	void Start () 
@@ -22,6 +24,17 @@ public class Movement : MonoBehaviour {
 	void Update () 
 	{
 		Vector3 newPosition = transform.position;
+		camPosition2D = Camera.main.WorldToScreenPoint(newPosition);
+		Debug.Log(camPosition2D.x);
+		if(camPosition2D.x < (Screen.width/3)) {
+			screenArea = 1;
+		}
+		else if((Screen.width*1/3) < camPosition2D.x && camPosition2D.x < (Screen.width*2/3)) {
+			screenArea = 2;
+		}
+		else if(camPosition2D.x > (Screen.width*2/3)) {
+			screenArea = 3;
+		}
 		
 		// Changing lanes
 		if (Input.GetKeyDown(KeyCode.W)) 
@@ -31,7 +44,7 @@ public class Movement : MonoBehaviour {
 				laneNum--;
 			}
 		} 
-		else if (Input.GetKeyDown(KeyCode.S)) 
+		else if (Input.GetKeyDown(KeyCode.S))
 		{
 			if (laneNum < 3) 
 			{
